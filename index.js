@@ -1,42 +1,40 @@
-// const settings = {
-//     theme: "dark",
-//     isAuthenticated: true,
-//     option: [1, 2, 3],
-// };
+const formEl = document.getElementById("contactForm");
+const contactsContainer = document.getElementById("contactsContainer");
 
-// console.log(settings)
-// const settingsStringify = JSON.stringify(settings);
-// console.log("settingsStringify", typeof settingsStringify)
-// localStorage.setItem("theme", settingsStringify);
+const contactsList = []
 
-// const savedTheme = localStorage.getItem("theme");
-// const parsedTheme = JSON.parse(savedTheme);
-// console.log("savedTheme", typeof savedTheme)
+function onSubmit(e) {
+    e.preventDefault();
 
-// localStorage.removeItem("theme");
+    const newContact = {
+        firstName: formEl.El.firstName.value,
+        lastName: formEl.lastName.value,
+        phoneNumber: formEl.phoneNumber.value,
+        email: formEl.email.value
+    };
 
-const formInput = document.querySelector('#feedback-message')
-const form = document.querySelector('#feedback-form')
+    contactsList.push(newContact)
 
-function onSubmitFeedback(event) {
-    event.preventDefault()
-    formInput.value = ''
-}
+    saveContacts();
 
-function onTextareaInput(event) {
-    const value = event.target.value
-    localStorage.setItem("feedBack-msg", value)
-}
+    formEl.reset()
+};
 
-function populateTextarea() {
-    const savedMsg = localStorage.getItem("feedBack-msg")
-    if (savedMsg) {
-        formInput.value = savedMsg;  
-    }
-    
-}
 
-populateTextarea()
+function saveContacts() {
+    localStorage.setItem("contacts", JSON.stringify(contactsList));
+};
 
-formInput.addEventListener('input', onTextareaInput)
-form.addEventListener('submit', onSubmitFeedback)
+function renderContacts() {
+    contactsContainer.onbeforematch((contact) => {
+        const div = document.createElement("div");
+        div.innerHTML = `
+        <p>${contact.firstName}</p>
+        <p>${contact.lastName}</p>
+        <p>${contact.phone}</p>
+        <p>${contact.email}</p>
+        `;
+    })
+};
+
+formEl.addEventListener("submit", onSubmit);

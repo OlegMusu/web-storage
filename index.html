@@ -6,25 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    <form id="feedback-form" class="feedback-form">
+    <form id="contactForm">
+        <input type="text" name="firstName" id="firstName">
+        <input type="text" name="lastName" id="lastName">
+        <input type="tel" name="phone" id="phone">
+        <input type="email" name="email" id="email">
+        <button type="submit">зберегти</button>
 
-        <h2 class="feedback-title">ім'я</h2>
-
-        <label for="feedback-message"></label>
-
-    <textarea 
-        name="message" 
-        id="feedback-message" 
-        class="feedback-message">
-    </textarea>
-
-    <button type="submit" id="btn-submit" class="btn-submit">
-        зберегти
-    </button>
-    
     </form>
 
-    <!-- Тут потрібно створювати новий формс та задавати йому нові класи та айді? -->
+    <div id="contactsContainer"></div>
 
     <script src="./index.js" type="module"></script>
 </body>
