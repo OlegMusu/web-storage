@@ -1,15 +1,15 @@
 const formEl = document.getElementById("contactForm");
 const contactsContainer = document.getElementById("contactsContainer");
 
-const contactsList = []
+let contactsList = JSON.parse(localStorage.getItem("contacts")) || [];
 
 function onSubmit(e) {
     e.preventDefault();
 
     const newContact = {
-        firstName: formEl.El.firstName.value,
+        firstName: formEl.firstName.value,
         lastName: formEl.lastName.value,
-        phoneNumber: formEl.phoneNumber.value,
+        phoneNumber: formEl.phone.value,
         email: formEl.email.value
     };
 
@@ -34,6 +34,7 @@ function renderContacts() {
         <p>${contact.phone}</p>
         <p>${contact.email}</p>
         `;
+        contactsContainer.appendChild(div);
     })
 };
 
