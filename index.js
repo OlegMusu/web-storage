@@ -26,7 +26,8 @@ function saveContacts() {
 };
 
 function renderContacts() {
-    contactsContainer.onbeforematch((contact) => {
+     contactsContainer.innerHTML = "";
+    contactsList.forEach((contact) => {
         const div = document.createElement("div");
         div.innerHTML = `
         <p>${contact.firstName}</p>
